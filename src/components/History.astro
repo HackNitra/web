@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import { events, guests } from '../data/site';
+import { tie } from '../lib/typography';
+
+const months = [
+  'január',
+  'február',
+  'marec',
+  'apríl',
+  'máj',
+  'jún',
+  'júl',
+  'august',
+  'september',
+  'október',
+  'november',
+  'december',
+];
+const monthLabel = (date: string) => `${months[Number(date.slice(5, 7)) - 1]} ${date.slice(0, 4)}`;
+
+const years = Map.groupBy(events, (event) => event.date.slice(0, 4));
+---
+
+<section class="sec" id="co-sme-robili">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="hl">Čo sme robili</span></h2>
+
+    {
+      [...years].map(([year, yearEvents]) => (
+        <div class="tl-year">
+          <h3 class="yr">{year}</h3>
+          <div class="evs">
+            {yearEvents.map((event) => (
+              <article class:list={['ev', { nophoto: !event.photo }]}>
+                <div>
+                  <time datetime={event.date}>{monthLabel(event.date)}</time>
+                  <h4>{event.title}</h4>
+                  {event.note && <p class="note">{tie(event.note)}</p>}
+                </div>
+                {event.photo && (
+                  <figure>
+                    <Image
+                      src={event.photo.src}
+                      alt={event.photo.alt}
+                      widths={[400, 560, 800, 1120]}
+                      sizes="(max-width: 900px) min(560px, 100vw), 400px"
+                      style={event.photo.position && `object-position: ${event.photo.position}`}
+                    />
+                  </figure>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+
+    <h2 class="sec-title sub-title"><span class="hl">S kým sme robili</span></h2>
+    <ul class="guests">
+      {
+        guests.map((guest) => (
+          <li>
+            <b>{guest.name}</b>
+            <span>{guest.role}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

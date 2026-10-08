@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Stránka sa nenašla – HackNitra" description="Táto stránka na hacknitra.sk neexistuje.">
+  <main class="missing">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label="HackNitra, úvod">
+        <Image src={logo} alt="HackNitra" height={48} densities={[1, 2, 3]} format="png" loading="eager" />
+      </a>
+      <h1>Táto stránka neexistuje.</h1>
+      <p>Odkaz je asi starý alebo preklepnutý.</p>
+      <a class="btn on-blue" href="/">Späť na HackNitra</a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .missing {
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    background: var(--blue);
+    color: #fff;
+  }
+  .missing .wrap {
+    width: 100%;
+  }
+  .missing h1 {
+    margin: 48px 0 18px;
+    font-size: clamp(2.6rem, 7vw, 6rem);
+  }
+  .missing p {
+    margin-bottom: 32px;
+  }
+</style>

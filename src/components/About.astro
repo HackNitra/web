@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import { team } from '../data/site';
+---
+
+<section class="sec" id="kto-sme">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="hl">Kto sme</span></h2>
+    <div class="about">
+      <div>
+        <p class="stmt">Vrátili sme sa na Slovensko. V&nbsp;Nitre nám chýbala tech komunita, tak sme jednu začali.</p>
+        <p>
+          Pracujeme na diaľku pre tech firmy. Budujeme priestor, kde sa ľudia môžu prepájať, učiť, zdieľať a&nbsp;vidieť,
+          ako ďaleko sa dá v&nbsp;technológiách dostať – v&nbsp;Nitre aj z&nbsp;Nitry.
+        </p>
+      </div>
+      <ul class="team">
+        {
+          team.map((member) => (
+            <li>
+              <Image
+                src={member.photo}
+                alt={member.name}
+                widths={[140, 280, 420]}
+                sizes="(max-width: 520px) 33vw, (max-width: 860px) 25vw, 140px"
+              />
+              <b>{member.name}</b>
+              <span>{member.company}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

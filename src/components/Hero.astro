@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { heroPhotos, stats } from '../data/site';
+---
+
+<div class="first">
+  <section class="hero">
+    <div class="wrap">
+      <div class="copy">
+        <h1>Komunita navrátilcov a technologických nadšencov</h1>
+        <p class="byline"><span>ktorých baví AI, technológie, biznis a moderné vzdelávanie</span></p>
+      </div>
+      <div class="mosaic">
+        {
+          heroPhotos.map((photo, i) => (
+            <figure class="duo">
+              {/* Tiles crop landscape photos, so the width needed follows the tile height. */}
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[360, 720, 1080, 1400]}
+                sizes={i === 0 ? '(max-width: 860px) 360px, 840px' : '(max-width: 860px) 360px, 420px'}
+                loading="eager"
+                fetchpriority={i === 0 ? 'high' : 'auto'}
+              />
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="HackNitra v skratke">
+    <div class="wrap">
+      <ul>
+        {
+          stats.map((stat) => (
+            <li>
+              <span class="n">{stat.value}</span>
+              <span class="l">{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</div>

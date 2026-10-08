@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
+
+<a class="btn on-blue skip" href="#top">Preskočiť na obsah</a>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="HackNitra, hore">
+      <Image src={logo} alt="HackNitra" height={48} densities={[1, 2, 3]} format="png" loading="eager" />
+    </a>
+    <nav aria-label="Hlavná navigácia">
+      <a href="#kto-sme">Kto sme</a>
+      <a href="#co-robime">Čo robíme</a>
+      <a href="#co-sme-robili">Čo sme robili</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn on-blue" href="#kontakt">Staň sa partnerom</a>
+  </div>
+</header>

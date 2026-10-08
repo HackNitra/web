@@ -1,0 +1,25 @@
+---
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import FollowBar from '../components/FollowBar.astro';
+import Formats from '../components/Formats.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import History from '../components/History.astro';
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="HackNitra – Komunita navrátilcov a technologických nadšencov"
+  description="Komunita navrátilcov a technologických nadšencov v Nitre, ktorých baví AI, technológie, biznis a moderné vzdelávanie. Prednášky, meetupy a build days."
+>
+  <Header />
+  <main id="top">
+    <Hero />
+    <About />
+    <Formats />
+    <History />
+    <Contact />
+  </main>
+  <FollowBar />
+</Base>

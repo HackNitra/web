@@ -1,0 +1,21 @@
+---
+import { formats } from '../data/site';
+import { tie } from '../lib/typography';
+---
+
+<section class="sec" id="co-robime">
+  <div class="wrap">
+    <h2 class="sec-title"><span class="hl">Čo robíme</span></h2>
+    <p class="lead">Organizujeme podujatia o&nbsp;AI, technológiách, inováciách, biznise a&nbsp;modernom vzdelávaní.</p>
+    <ul class="formats">
+      {
+        formats.map((format) => (
+          <li>
+            <h3>{format.title}</h3>
+            <p>{tie(format.text)}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

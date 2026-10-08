@@ -1,0 +1,3 @@
+allowBuilds:
+  # Verifies esbuild's platform binary after install (used by Vite through Astro).
+  esbuild: true

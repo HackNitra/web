@@ -1,0 +1,27 @@
+---
+import { contacts, mailto, partnerMailto } from '../data/site';
+---
+
+<section class="contact" id="kontakt">
+  <div class="wrap grid">
+    <div>
+      <h2 class="sec-title"><span class="hl">Ozvi sa nám</span></h2>
+      <h2 class="big">Chceš podporiť komunitu alebo vystúpiť? Napíš nám.</h2>
+    </div>
+    <div>
+      <ul class="people">
+        {
+          contacts.map((person) => (
+            <li>
+              <b>{person.name}</b>
+              <em>{person.role}</em>
+              <a href={mailto(person.email)}>{person.email}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="btn on-blue" href={partnerMailto}>Staň sa partnerom</a>
+      <address><b>HackNitra OZ</b><br />Čulenova 147/19, 949 01 Nitra</address>
+    </div>
+  </div>
+</section>
