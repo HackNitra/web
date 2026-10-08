@@ -9,7 +9,7 @@ src/pages/              the home page and the 404 page
 src/styles/global.css   all styles: brand colours, layout, breakpoints
 src/assets/             logo, team and event photos (resized and converted to WebP at build)
 src/lib/typography.ts   Slovak no-break spaces for body copy that comes from data
-public/                 favicon, touch icon, social preview image
+public/                 favicon, touch icon, social preview image, CNAME
 .github/workflows/      build and deploy to GitHub Pages
 ```
 
@@ -42,7 +42,7 @@ Most updates only touch `src/data/site.ts`.
 
 1. Push this repo to GitHub.
 2. In **Settings → Pages**, set **Source** to *GitHub Actions*. Every push to `main` then builds and deploys the site (`.github/workflows/deploy.yml`).
-3. In the same page, set **Custom domain** to `hacknitra.sk`. With an Actions deploy the domain is configured here, and a `CNAME` file isn't used.
+3. In the same page, set **Custom domain** to `hacknitra.sk`. `public/CNAME` records the same domain and ships in the build, but with an Actions deploy GitHub reads the domain from this setting, so it has to be set here too.
 4. At the DNS provider, point the apex `hacknitra.sk` at GitHub with `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`, and add a `CNAME` record for `www` with the value `hacknitra.github.io`.
 5. Once the certificate is issued, enable **Enforce HTTPS**.
 
