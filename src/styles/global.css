@@ -252,6 +252,19 @@ dd {
   background: #fff;
   color: var(--blue);
 }
+.follow-bar .legal {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 5px 0;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.follow-bar .legal:hover {
+  color: var(--blue);
+}
+.follow-bar .legal .short {
+  display: none;
+}
 
 .social {
   display: flex;
@@ -280,9 +293,16 @@ dd {
   .top .btn {
     margin-left: auto;
   }
+  .follow-bar .legal .long {
+    display: none;
+  }
+  .follow-bar .legal .short {
+    display: inline;
+  }
 }
 
-@media (max-width: 520px) {
+/* Below this the bar can't fit the text next to the icons, the link and the button. */
+@media (max-width: 600px) {
   .follow-bar .txt {
     display: none;
   }

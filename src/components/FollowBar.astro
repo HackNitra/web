@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { fixed = true } = Astro.props;
+const privacyPath = '/sukromie/';
+const onPrivacy = Astro.url.pathname.replace(/\/?$/, '/') === privacyPath;
 ---
 
 <footer class:list={['follow-bar', { fixed }]}>
@@ -36,6 +38,15 @@ const { fixed = true } = Astro.props;
           ))
         }
       </span>
+      {/* Phones get the short label; the accessible name always carries both. */}
+      <a
+        class="legal"
+        href={privacyPath}
+        aria-label="Ochrana osobných údajov (GDPR)"
+        aria-current={onPrivacy ? 'page' : undefined}
+      >
+        <span class="long">Ochrana osobných údajov</span><span class="short">GDPR</span>
+      </a>
     </div>
     <slot>
       <a class="btn" href={partnerMailto}>Staň sa partnerom</a>
