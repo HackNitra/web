@@ -41,7 +41,7 @@ Most updates only touch `src/data/site.ts`.
 ## Publish on GitHub Pages
 
 1. Push this repo to GitHub.
-2. In **Settings → Pages**, set **Source** to *GitHub Actions*. Every push to `main` then builds and deploys the site (`.github/workflows/deploy.yml`).
+2. In **Settings → Pages**, set **Source** to *GitHub Actions*. Every push to `majster` then builds and deploys the site (`.github/workflows/deploy.yml`). Don't use *Deploy from a branch*: that publishes the repo as-is through Jekyll, which can't build an Astro project and fails on the `.astro` files.
 3. In the same page, set **Custom domain** to `hacknitra.sk`. `public/CNAME` records the same domain and ships in the build, but with an Actions deploy GitHub reads the domain from this setting, so it has to be set here too.
 4. At the DNS provider, point the apex `hacknitra.sk` at GitHub with `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`, and add a `CNAME` record for `www` with the value `hacknitra.github.io`.
 5. Once the certificate is issued, enable **Enforce HTTPS**.
