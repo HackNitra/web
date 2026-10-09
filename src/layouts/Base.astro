@@ -1,9 +1,9 @@
 ---
 // Barlow Condensed is bundled from @fontsource and served from our own domain,
-// so no visitor request goes to Google. Slovak needs both subsets: č, ď, ľ, ň,
-// š, ť and ž live in latin-ext.
-import '@fontsource/barlow-condensed/latin-900.css';
-import '@fontsource/barlow-condensed/latin-ext-900.css';
+// so no visitor request goes to Google. 900.css declares every subset with its
+// unicode-range, so browsers fetch only what the page uses; Slovak needs both
+// latin and latin-ext (č, ď, ľ, ň, š, ť, ž), hence the two preloads.
+import '@fontsource/barlow-condensed/900.css';
 import barlowLatin from '@fontsource/barlow-condensed/files/barlow-condensed-latin-900-normal.woff2?url';
 import barlowLatinExt from '@fontsource/barlow-condensed/files/barlow-condensed-latin-ext-900-normal.woff2?url';
 import '../styles/global.css';
@@ -11,9 +11,11 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  /** Target of the "skip to content" link; pages without one get no link. */
+  skipTo?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, skipTo } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.jpg', Astro.site);
 ---
@@ -46,6 +48,7 @@ const ogImage = new URL('/og.jpg', Astro.site);
     <link rel="preload" href={barlowLatinExt} as="font" type="font/woff2" crossorigin />
   </head>
   <body>
+    {skipTo && <a class="btn on-blue skip" href={skipTo}>Preskočiť na obsah</a>}
     <slot />
   </body>
 </html>

@@ -1,20 +1,29 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
+
+interface Props {
+  logoHref?: string;
+  logoLabel?: string;
+}
+
+const { logoHref = '#top', logoLabel = 'HackNitra, hore' } = Astro.props;
 ---
 
-<a class="btn on-blue skip" href="#top">Preskočiť na obsah</a>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="HackNitra, hore">
+    <a class="logo" href={logoHref} aria-label={logoLabel}>
       <Image src={logo} alt="HackNitra" height={48} densities={[1, 2, 3]} format="png" loading="eager" />
     </a>
-    <nav aria-label="Hlavná navigácia">
-      <a href="#kto-sme">Kto sme</a>
-      <a href="#co-robime">Čo robíme</a>
-      <a href="#co-sme-robili">Čo sme robili</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-    <a class="btn on-blue" href="#kontakt">Staň sa partnerom</a>
+    {/* Other pages pass their own right-hand side; the home page gets the nav. */}
+    <slot>
+      <nav aria-label="Hlavná navigácia">
+        <a href="#kto-sme">Kto sme</a>
+        <a href="#co-robime">Čo robíme</a>
+        <a href="#co-sme-robili">Čo sme robili</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn on-blue" href="#kontakt">Staň sa partnerom</a>
+    </slot>
   </div>
 </header>

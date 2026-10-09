@@ -1,8 +1,15 @@
 ---
 import { partnerMailto, socials } from '../data/site';
+
+interface Props {
+  /** Pinned to the bottom of the viewport; otherwise a plain footer. */
+  fixed?: boolean;
+}
+
+const { fixed = true } = Astro.props;
 ---
 
-<div class="follow-bar">
+<footer class:list={['follow-bar', { fixed }]}>
   <div class="wrap">
     <div class="follow">
       <span class="txt">Sleduj @hacknitra</span>
@@ -30,6 +37,8 @@ import { partnerMailto, socials } from '../data/site';
         }
       </span>
     </div>
-    <a class="btn" href={partnerMailto}>Staň sa partnerom</a>
+    <slot>
+      <a class="btn" href={partnerMailto}>Staň sa partnerom</a>
+    </slot>
   </div>
-</div>
+</footer>

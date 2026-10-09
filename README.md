@@ -1,12 +1,14 @@
 # hacknitra.sk
 
-Website of HackNitra, a community of people who came back to Slovakia and tech enthusiasts in Nitra. It's a single static page built with [Astro](https://astro.build) and ships no client-side JavaScript. It makes no third-party requests and sets no cookies.
+Website of HackNitra, a community of people who came back to Slovakia and tech enthusiasts in Nitra. It's a static site built with [Astro](https://astro.build): the home page, the privacy policy for the Tvor AI Ty Build Day event at `/sukromie`, and a 404 page. It ships no client-side JavaScript, makes no third-party requests and sets no cookies.
 
 ```
 src/data/site.ts        content that changes: stats, team, formats, events, guests, contacts
-src/components/         one component per section of the page
-src/pages/              the home page and the 404 page
-src/styles/global.css   all styles: brand colours, layout, breakpoints
+src/components/         one component per section of the home page, plus the shared header and follow bar
+src/pages/              index (home), sukromie (privacy policy), 404
+src/styles/global.css   brand colours, base styles and the pieces every page shares
+src/styles/home.css     home page sections
+src/styles/privacy.css  privacy policy layout and its print styles
 src/assets/             logo, team and event photos (resized and converted to WebP at build)
 src/lib/typography.ts   Slovak no-break spaces for body copy that comes from data
 public/                 favicon, touch icon, social preview image, CNAME
@@ -35,6 +37,8 @@ Most updates only touch `src/data/site.ts`.
 **Stats** are written by hand. When you add an event or a guest, update the numbers in `stats` as well.
 
 **Slovak typography:** in body text, one-letter words (a, i, k, o, s, u, v, z) must not end a line. Copy written directly in a component uses `&nbsp;` after them; copy that comes from `site.ts` goes through `tie()`, which does this automatically. Keep that when you edit.
+
+**Privacy policy:** the text lives in `src/pages/sukromie.astro`. Each numbered section is a `<section class="part">` with an `id`, which the table of contents links to; keep the two in step. Wrap a phrase in `<mark>` to highlight it. When the policy changes, update both dates in the row under the hero and the date in section 12. The page prints cleanly (or saves as PDF) without the header, table of contents and footer.
 
 **Social preview:** `public/og.jpg` is a 1200×630 screenshot of the header and hero, with the stats and follow bar hidden. Retake it if the hero changes.
 
